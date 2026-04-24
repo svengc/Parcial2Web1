@@ -114,3 +114,25 @@ export function procesarSolicitud(inventario, solicitud) {
 
   return resultado;
 }
+
+export function totalPorPrioridad(inventario) {
+  const resumen = {
+    alta: 0,
+    media: 0,
+    baja: 0
+  };
+
+  for (let i = 0; i < inventario.length; i = i + 1) {
+    if (inventario[i].estado === "disponible") {
+      if (inventario[i].prioridad === "alta") {
+        resumen.alta = resumen.alta + inventario[i].cantidad;
+      } else if (inventario[i].prioridad === "media") {
+        resumen.media = resumen.media + inventario[i].cantidad;
+      } else if (inventario[i].prioridad === "baja") {
+        resumen.baja = resumen.baja + inventario[i].cantidad;
+      }
+    }
+  }
+
+  return resumen;
+}
